@@ -11,22 +11,33 @@ academic integrity policy. I understand the importance the consequences of plagi
 
 
 def orientation(p1:tuple[int, int],  p2: tuple[int, int], p3: tuple[int, int]):
-    val = ((p2[1]-p1[1]) * (p3[0]-p2[0]) - (p2[0]-p1[0]) *(p3[1]-p2[1]))
+    val = ((p2(1)-p1(1)) * (p3(0)-p2(0)) - (p2(0)-p1(0)) *(p3(1)-p2(1)))
 
     if val == 0:
-        return "Linear"
+        return 0 #Colinear
     
     if val > 0:
-        return "Clockwise"
+        return 1 #Clockwise
     
     if val < 0: 
-        return "Counter Clockwise"
-
+        return 2 #Counter Clockwise
+    
+def on_segment(p1:tuple[int, int],  p2: tuple[int, int], p3: tuple[int, int]): #Returns True if point p2 lies on segment pr.
+    cross_product = (p3(0) - p1(0)) * (p2(1) - p1(1)) - (p3(1) - p1(1)) * (p2(0) - p1(0))
+   
+    if p1(0) < p2(0) and p1(1) < p2(1) and p2(0) < p3(0) and p2(1) < p3(1) and cross_product == 0:
+        return True
+    else:
+        return False
+    
+def do_intersection(seg1: tuple[tuple[int, int], tuple[int, int]], seg2: tuple[tuple[int, int], tuple[int, int]]):
+    
 
 
 if __name__ == "__main__":
-    p1 = [1, 1]
-    p2 = [2, 2]
-    p3 = [3,3]
+    p1 = (1, 1)
+    p2= (2, 2)
+    p3 = (3,3)
 
-    print(orientation(p2,p1,p3))
+    print(orientation(p1,p2,p3))
+    print(on_segment(p1,p2,p3))
